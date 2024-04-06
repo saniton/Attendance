@@ -60,36 +60,36 @@ app.post('/saveData', async (req, res) => {
 });
 
 //Google Sheets API integration
-const credentials = require('./credentials.json'); // Your Google Sheets API credentials
-const spreadsheetId = '1KZfjffzDTksJ2pFXQxSPqNFFsYvBYQpSWWgRPkYPQR4'; // Replace with your Google Sheet ID
+// const credentials = require('./credentials.json'); // Your Google Sheets API credentials
+// const spreadsheetId = '1KZfjffzDTksJ2pFXQxSPqNFFsYvBYQpSWWgRPkYPQR4'; // Replace with your Google Sheet ID
 
-const auth = new google.auth.GoogleAuth({
-  credentials: credentials,
-  scopes: ['https://www.googleapis.com/auth/spreadsheets'],
-});
+// const auth = new google.auth.GoogleAuth({
+//   credentials: credentials,
+//   scopes: ['https://www.googleapis.com/auth/spreadsheets'],
+// });
 
-const sheets = google.sheets({ version: 'v4', auth });
+// const sheets = google.sheets({ version: 'v4', auth });
 
-app.post('/api/saveToGoogleSheet', async (req, res) => {
-  const { data } = req.body;
+// app.post('/api/saveToGoogleSheet', async (req, res) => {
+//   const { data } = req.body;
 
-  try {
-    const response = await sheets.spreadsheets.values.append({
-      spreadsheetId: spreadsheetId,
-      range: 'Sheet1!A1', // Specify the range where you want to insert the data
-      valueInputOption: 'RAW',
-      requestBody: {
-        values: [[data]],
-      },
-    });
+//   try {
+//     const response = await sheets.spreadsheets.values.append({
+//       spreadsheetId: spreadsheetId,
+//       range: 'Sheet1!A1', // Specify the range where you want to insert the data
+//       valueInputOption: 'RAW',
+//       requestBody: {
+//         values: [[data]],
+//       },
+//     });
 
-    console.log('Data inserted:', response.data);
-    res.status(200).json({ success: true, message: 'Data inserted successfully' });
-  } catch (error) {
-    console.error('Error inserting data:', error);
-    res.status(500).json({ success: false, message: 'Error inserting data' });
-  }
-});
+//     console.log('Data inserted:', response.data);
+//     res.status(200).json({ success: true, message: 'Data inserted successfully' });
+//   } catch (error) {
+//     console.error('Error inserting data:', error);
+//     res.status(500).json({ success: false, message: 'Error inserting data' });
+//   }
+// });
 
 
 
