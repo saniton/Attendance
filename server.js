@@ -166,7 +166,8 @@ app.get('/getData/:qrNumber', async (req, res) => {
     // Extract the parameters from the query string
     const modelNo = req.query.model;
     const serialNo = req.query.serial;
-    const customHeader = req.query.sani;
+    const customHeader = req.headers.scanner;
+    console.log(customHeader, '--------');
     const rollNumber = modelNo + serialNo;
     console.log('------ API: redirect User', 'USER ROLL: ', rollNumber , '----------');
   
@@ -175,7 +176,7 @@ app.get('/getData/:qrNumber', async (req, res) => {
     try {
         
       // If the custom header is not present or doesn't match the expected value, return an error response
-      if (!customHeader || customHeader !== 'pancakes') {
+      if (!customHeader || customHeader !== 'customdatatorec') {
         // return res.status(403).json({ error: 'Unauthorized access.' }); // You can choose the appropriate status code
         return res.redirect('https://www.youtube.com');
       }
